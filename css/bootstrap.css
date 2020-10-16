@@ -1,0 +1,47 @@
+/*navigation bar at the top of page*/
+.navbar{
+    font-size: 35px;
+	font-family: Courier New;
+	font-weight: bold;
+}
+.nav-item{
+	padding-right: 5%; 
+}
+.jumbotron{
+	padding: 8% 20%;
+	font-family: Courier New;
+	font-weight: bold;
+	margin-bottom: 0;
+}
+.jumbotron h1{
+	font-weight: bold;
+	font-size: 45px;
+	padding: 30px;
+}
+.jumbotron p{
+	font-size: 28px;
+}
+#projsec li{
+	margin: 4%;
+	
+}
+#projsec a{
+	font-family: Courier New;
+	font-weight: bold;
+	font-size: 30px;
+	
+}
+#projsec a:hover{
+	text-decoration: none;
+	
+}
+#linksec a{
+	margin: 4%;
+}
+#linksec > p{
+	text-align: center;
+	margin-left: 3%;
+}
+#linksec > p >a{
+	margin: 1%;
+}
