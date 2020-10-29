@@ -1,0 +1,72 @@
+/*navigation bar at the top of page*/
+nav{
+    padding: 16px 10px 16px 350px;    
+    margin: 0px;
+    border-bottom: 2px solid black;
+
+}
+/*Define the colors and size of the font */
+nav a{
+    font-weight: bold;
+    padding-right:80px;
+    text-decoration: none;
+    font-size: 35px;
+    color: #47577A
+}
+body{
+    background-image: url("../images/keyboard.jpg");
+    font-family:Courier New;
+}
+
+#welcome-text{
+    padding: 40px;
+    text-align: center;
+    font-size: 26px;
+    color: #48494A;
+}
+.about-me-box{
+    width: 60%;
+    margin-left: 100px;
+    padding: 30px;
+    background: rgba(217,217,217,0.50);
+}
+.about-me-box h2{
+    font-family: Courier New;
+    color: #47577A;
+    font-size: 60px;
+    font-weight: bold;
+}
+.about-me-box p{
+    padding: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #4d4d4d;
+}
+/*Modify header of the project list*/
+.project-list h2{
+    color:#000066;
+    font-size: 34px;
+    font-weight: bold;
+}
+/*Removes the underline from link. This selects a where li is a parent*/
+.project-list li > a{
+    text-decoration: none;
+    color:#3333ff;
+    font-size: 29px;
+    font-weight: bold;
+}
+/*Modify spacing of the list*/
+.project-list h2, li{
+    padding: 25px;
+    margin-left: 100px;
+}
+/*This includes the copyright and the W3C verification icon*/
+footer a{
+    padding: 10px;
+    padding-bottom: 20px;
+    margin-left: 50px;
+}
+/*modify the image to make it circle*/
+.thumbnail-img a > img{
+    margin-left: 200px;
+}

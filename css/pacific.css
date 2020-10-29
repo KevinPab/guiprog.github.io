@@ -1,0 +1,117 @@
+header, hgroup, nav, footer, figure, figcaption, aside, section, article {
+	/*This line gaurantees that each element will have a newline at the end*/
+	display: block;
+}
+header{
+	/*put the image to the right and fill the left blank area with defined color*/
+	background: url("../images/sunset.jpg") no-repeat right;
+	background-color: #000033;
+}
+
+body {
+	/*only repeats along the x-axis*/
+	background: #00569f url("../images/ptrbackground.jpg") repeat-x;
+	color: #666666;
+	font-family: Arial, Helvetica, sans-serif;
+	width: 80%;
+	min-width: 600px;
+	margin: 20px auto;
+	
+	
+}
+#content{
+	background: white;
+	height: 400px;
+	padding: 20px;
+	margin: 0px;
+	/*4 x 20px paddings + 150px = 230px offset*/
+	width: calc(100% - 230px);
+	float: left;
+}
+#content img{
+	float: left;
+}
+/*list of activities. Bullet point is replaced by gif*/
+#content ul{
+	float: left;
+	list-style-image: url("../images/marker.gif");
+	width: 70%;
+}
+/*pacific trails resort description*/
+#content p{
+	float: left;
+	margin-left: 20px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	width: 70%;
+
+}
+p .resort{
+	color: #5097b5;
+	font-weight: bold;
+}
+#contact .resort{
+	color: #5097b5;
+	font-weight: bold;
+}
+#contact {
+	font-size: 90%;
+	float: left;
+	margin-left: 20px;
+}
+
+nav{
+	float: left;
+}
+/*nav bar on the left of page*/
+nav ul {
+	font-size: 1.2em;
+	background: lightblue;
+	margin: 0px;
+	width: 150px;
+	padding: 20px;
+	/*remove the bullet points from ul*/
+	list-style-type: none;
+	height: 450px;
+}
+/*attributes in the nav bar*/
+nav a{
+	/*removes the hyperlink underline*/
+	text-decoration: none;
+	color: #000033;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+}
+
+nav a:visited {
+	color: #344873;
+}
+nav a:hover {
+	color: #FFFFFF;
+}
+h1 {
+	margin: 0;
+	padding: 10px;
+	color: white;
+}
+h2 {
+	color: #3399CC;
+}
+h1,
+h2 {
+	font-family: Georgia, "Times New Roman", serif;
+}
+
+dt {
+	color: #000033;
+}
+footer {
+	font-family: Georgia, "Times New Roman", serif;
+	padding-left: 20px;
+	padding-bottom: 12px;
+	margin: 0;
+	width: calc(100% - 210px);
+	float: left;
+	background: white;
+}
+
