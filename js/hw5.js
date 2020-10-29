@@ -23,7 +23,7 @@ function handleUserClick(){
 	colMax = parseInt(document.getElementById("colMax").value);
 	rowMin = parseInt(document.getElementById("rowMin").value);
 	rowMax = parseInt(document.getElementById("rowMax").value);
-	
+
 	//always remove old table just to be safe
 	removeOldTab(tabID); 
 	
@@ -41,17 +41,17 @@ function handleUserClick(){
 			generateTable(colMin, colMax, rowMin, rowMax, tabID); // generates the table using correctly validated input
 			break;
 		case 1: // minCol > maxCol error
-			errMsg.innerHTML = "Min(col) must be less than max(col). Try again:";
+			errMsg.innerHTML = "Min(column) must be less than max(column). Try again:";
 			break;
 		case 2: // minRow > maxRow error
-			errMsg.innerHTML = "Min(row) must be less than max(row). Try again:";
+			errMsg.innerHTML = "Min(row) must be less than max(row).<br>Try again:";
 			break;
 		case 3: // column values not within range
 		case 4: // row values not within range
-			errMsg.innerHTML = "Allowed range is -50 to 50. Try again:";
+			errMsg.innerHTML = "Allowed range is -50 to 50.<br>Try again:";
 			break;
 		case 5: // empty/blank space detected
-			errMsg.innerHTML = "Please fill in all fields. Try again:";
+			errMsg.innerHTML = "Please fill in all fields with numbers.<br>(Special Note: 'e' is not allowed)";
 			break;
 		default:
 			break;
@@ -89,7 +89,7 @@ function validateInput(colMin,colMax,rowMin,rowMax){
 function generateTable(cmin, cmax, rmin, rmax, table_id) {
   var table = document.getElementById(table_id);
   
-  // Count total rows and columns
+  // Count total rows and columns, inclusive
   var totalRows = rmax - rmin + 1;
   var totalCols = cmax - cmin + 1;
   

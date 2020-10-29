@@ -49,7 +49,7 @@ hr{
 	font-size:2vw;
 	color: #FD5C0C;
 }
-#userPrompt, #promptDetail{
+#userPrompt, #specialNote{
 	color: #008CBA; /*light blue*/
 }
 #errMessage{
@@ -69,7 +69,7 @@ hr{
 }
 /*Font of the user input prompt*/
 .inputGrid p, label{
-	font-size: 1.2vw;
+	font-size: 1vw;
 	font-weight: bold;
 	margin-top: 13px;
 	margin-bottom: 13px;
