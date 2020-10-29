@@ -15,7 +15,7 @@ var rowMin = 0;
 var tabID = "table"; // indicate table id from html here
 
 //use event listener to handle user input, which will then validate and generate table
-document.getElementById("generate_btn").addEventListener("click", handleUserClick);
+var myEvent = document.getElementById("generate_btn").addEventListener("click", handleUserClick);
 
 //validates user input and also parse input into integer
 function handleUserClick(){
@@ -51,7 +51,7 @@ function handleUserClick(){
 			errMsg.innerHTML = "Allowed range is -50 to 50.<br>Try again:";
 			break;
 		case 5: // empty/blank space detected
-			errMsg.innerHTML = "Please fill in all fields with numbers.<br>(Special Note: 'e' is not allowed)";
+			errMsg.innerHTML = "Please fill in all fields with numbers.<br>(Note: \"e\" and trailing '+' are not allowed)";
 			break;
 		default:
 			break;

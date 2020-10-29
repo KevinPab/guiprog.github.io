@@ -22,8 +22,8 @@ hr{
 	grid-template-areas:
 	"icon . header header header header . ."
 	"hr hr hr hr hr hr hr hr"
-	". . . input input . . ."
-	". table table table table table table table";
+	". . input input . . . ."
+	". . table table table table table . ";
 	grid-gap: 5px;
 }
 .icon{
@@ -113,14 +113,15 @@ input::-webkit-inner-spin-button {
 /*table*/
 .tableGrid{
 	grid-area:table;
-	margin-right: 5%;
 	margin-top: 2%;
 	height: 50vh;
+	width: 65vw;
 	overflow: auto; /*allow scrolling*/
 }
 
 /*Note: make border for the table*/
 table{
+
 	border-style: solid;
 	border-color: #3652FF;
 	border-width: 0.18vw;
