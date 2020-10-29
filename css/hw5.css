@@ -8,7 +8,7 @@ paprawin_boonyakida@student.uml.edu
 /*Change background image here*/
 body{
 	background-image: url("../images/plainbg.jpg");
-	font-family: Georgia;
+	font-family: Georgia; /*global font for this page*/
 }
 hr{
 	background-color: grey;
@@ -75,8 +75,8 @@ hr{
 	margin-bottom: 13px;
 
 }
-/*Remove unwanted arrows.
-Source: https://www.w3schools.com/howto/howto_css_hide_arrow_number.asp
+/*Remove unwanted arrows in the user input-field.
+  Source: https://www.w3schools.com/howto/howto_css_hide_arrow_number.asp
 */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -90,7 +90,6 @@ input::-webkit-inner-spin-button {
 	float: right;
 	height: 30px;
 	width: 6.5vw;
-	/*add shadow to the box*/
 	box-shadow: 0.2vw 0.2vw 0.2vw 0px rgba(0,0,0,0.2);
 	border: solid 1px black;
 	border-color: #008CBA;
@@ -111,16 +110,16 @@ input::-webkit-inner-spin-button {
 	outline:none;
 	box-shadow: 0.2vw 0.2vw 0.2vw 0px  rgba(0,0,0,0.4);
 }
-
+/*table*/
 .tableGrid{
 	grid-area:table;
 	margin-right: 5%;
 	margin-top: 2%;
 	height: 50vh;
-	overflow: auto;
+	overflow: auto; /*allow scrolling*/
 }
 
-/*make border for the table*/
+/*Note: make border for the table*/
 table{
 	border-style: solid;
 	border-color: #3652FF;
@@ -138,12 +137,12 @@ td{
   height: 1.7vw;
   border: solid 1px black;
 }
-
+/*odd cells will be green for ease of reading*/
 td:nth-child(odd){
-	background: #7EFFD6; /*light red*/
+	background: #7EFFD6; /*light green*/
 }
 
-/*style the table headers. Row and column headers are selected*/
+/*style the table headers. Row headers and column headers are selected*/
 td:first-child, tr:first-child > td{
 	background: #36B6FF; /*light blue*/
 }

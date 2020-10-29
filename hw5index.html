@@ -15,6 +15,7 @@ paprawin_boonyakida@student.uml.edu
   <!--declare container to be used to implement CSS grid-->
   <div class="container">
     <div class="icon">
+	  <!--Home button that leads back to my main page-->
 	  <a href="hw4index.html"><i id="homeBtn" class="fas fa-home"></i></a>
 	</div>
     <div class="header">
@@ -25,12 +26,12 @@ paprawin_boonyakida@student.uml.edu
 	</div>
     <!-- create form for user input-->
     <div class="inputGrid">
-	  <!--Display acceptable types-->
+	  <!--Instructions for the user-->
 	  <p id="userPrompt"> Enter numbers between -50 and 50: </p>
 	  <p id="promptDetail"> Note: only numbers are accepted </p>
 	  <!-- This will display error messages after invalid input is entered-->
 	  <p id="errMessage"> </p>
-	  <!--Form for user to type in their numbers.input type='number' filters out unwanted types-->
+	  <!--Form for user to type in their numbers.Input type='number' filters out unwanted types-->
       <form name="inputForm">
         <a>
           <label for="colMin">Minimum Column value</label>
@@ -48,7 +49,7 @@ paprawin_boonyakida@student.uml.edu
           <label for="rowMax">Maximum Row value</label>
           <input type="number" id="rowMax" name="rowMax" autocomplete="off"/>
         </a>
-		<!--When this button is clicked, js will generate a table below-->
+		<!--When this button is clicked, js will generate a table in the next div-->
         <button type="button" id="generate_btn"> Generate </button>
       </form>
     </div>
