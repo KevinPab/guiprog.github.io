@@ -114,14 +114,13 @@ input::-webkit-inner-spin-button {
 .tableGrid{
 	grid-area:table;
 	margin-top: 2%;
-	height: 50vh;
+	height: 27vw;
 	width: 65vw;
 	overflow: auto; /*allow scrolling*/
 }
 
 /*Note: make border for the table*/
 table{
-
 	border-style: solid;
 	border-color: #3652FF;
 	border-width: 0.18vw;
