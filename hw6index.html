@@ -1,0 +1,72 @@
+<!--
+Paprawin Boonyakida
+GUI Programming 1
+Assignment 6: Implementing multiplication using jQuery
+paprawin_boonyakida@student.uml.edu
+-->
+
+<html>
+<head>
+  <title>Homework 6</title>
+  <link rel="stylesheet" href="css/hw6.css" />
+  <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+</head>
+<body>
+  <!--declare container to be used to implement CSS grid-->
+  <div class="container">
+    <div class="icon">
+	  <!--Home button that leads back to my main page-->
+	  <a href="hw4index.html"><i id="homeBtn" class="fas fa-home"></i></a>
+	</div>
+    <div class="header">
+      <h1 id="title">MULTIPLICATION TABLE (WITH JQUERY)</h1>
+    </div>
+	<div class="lineBr">
+	  <hr>
+	</div>
+    <!-- create form for user input-->
+    <div class="inputGrid">
+	  <!--Instructions for the user-->
+	  <p id="userPrompt"> Enter numbers between -50 and 50: </p>
+	  <p id="specialNote"> Note: decimals are floored(rounded down) for simplicity </p>
+	  <!--Form for user to type in their numbers.Input type='number' filters out unwanted types-->
+      <form name="inputForm" id="inputForm">
+        <a>
+          <label for="colMin">Minimum Column value</label>
+          <input type="number" id="colMin" name="colMin" autocomplete="off"/>
+        </a>
+        <a>
+          <label for="colMax">Maximum Column value</label>
+          <input type="number" id="colMax" name="colMax" autocomplete="off"/>
+        </a>
+        <a>
+          <label for="rowMin">Minimum Row value</label>
+          <input type="number" id="rowMin" name="rowMin" autocomplete="off"/>
+        </a>
+        <a>
+          <label for="rowMax">Maximum Row value</label>
+          <input type="number" id="rowMax" name="rowMax" autocomplete="off"/>
+        </a>
+		<!--When this button is clicked, js will generate a table in the next div-->
+        <button type="submit" id="generate_btn"> Generate </button>
+      </form>
+    </div>
+  
+    <div class="tableGrid">
+	  <!-- table is left blank here because js will generate the table-->
+      <table id="table"></table>
+    </div>
+  </div>
+  
+
+  <!-- jQuery CDN -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  
+  <!-- jQuery validator CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.2/dist/jquery.validate.js"></script>
+  
+  <!-- javascript -->
+  <script src="js/hw6.js"></script>
+</body>
+</html>
