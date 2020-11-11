@@ -1,7 +1,7 @@
 /*
 Paprawin Boonyakida
 GUI Programming 1
-Assignment 5: Implementing multiplication table using html,css,js
+Assignment 6: Implementing jQuery to validate errors and display errors
 paprawin_boonyakida@student.uml.edu
 */
 
@@ -57,7 +57,7 @@ hr{
 }
 #userPrompt, #specialNote{
 	color: #008CBA; /*light blue*/
-	font-size: 1.15vw;
+	font-size: 1.1vw;
 }
 #errMessage{
 	color: #FA1D1D; /*red*/
@@ -122,7 +122,7 @@ input::-webkit-inner-spin-button {
 .tableGrid{
 	grid-area:table;
 	margin-top: 2%;
-	height: 35vw;
+	height: 38vw;
 	width: 55vw;
 	overflow: auto; /*allow scrolling*/
 }
