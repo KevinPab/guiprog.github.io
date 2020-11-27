@@ -22,6 +22,14 @@ body{
 	height: 17vw;
 	overflow:auto;
 }
+
+/*increase checkbox size*/
+#cbox{
+  width: 1.1vw;
+  height: 1.1vw;
+
+}
+
 hr{
 	background-color: grey;
 	height: 1px;

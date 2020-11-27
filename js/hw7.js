@@ -27,7 +27,7 @@ function addTab(table){
 
   last_tab_no++;
 
-  $("div#tabs ul").append("<li><a href='#tab" + last_tab_no + "'>" + "Table" + last_tab_no + "</a>" + "<input type='checkbox' val='tabcheck"+ last_tab_no +"'>" + "</li>");
+  $("div#tabs ul").append("<li><a href='#tab" + last_tab_no + "'>" + "Table" + last_tab_no + "</a>" + "<input type='checkbox' id='cbox' val='tabcheck"+ last_tab_no +"'>" + "</li>");
   // append table to the tab
   var last_div = $("div#tabs:last-child");
   $("div#tabs").append("<div id='tab" + last_tab_no + "'>" + table.outerHTML + "</div>");
@@ -37,7 +37,7 @@ function addTab(table){
   }
   //otherwise, create the first tab
   else{
-    $("div#tabs ul").append("<li><a href='#tab" + 1 + "'>" + "Table" + 1 + "</a>" + "<input type='checkbox' val='tabcheck"+ 1 +"'>" +"</li>");
+    $("div#tabs ul").append("<li><a href='#tab" + 1 + "'>" + "Table" + 1 + "</a>" + "<input type='checkbox' id='cbox' val='tabcheck"+ 1 +"'>" +"</li>");
     $("div#tabs").append("<div id='tab" + 1 + "'>" + table.outerHTML + "</div>");
     $("div#tabs").tabs("refresh");
     $("div#tabs").tabs( "option", "active", 0 );
@@ -246,6 +246,7 @@ $("#delSelectedTabs").on("click", function() {
           $(this).parent().remove();
         }
     });
+  $("div#tabs").tabs("refresh");
 });
 
 
