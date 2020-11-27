@@ -9,6 +9,10 @@ paprawin_boonyakida@student.uml.edu
 var tabID = "table"; 
 var tabsNum = 0;
 var table;
+var rmin = 1;
+var rmax = 5;
+var cmin = 1;
+var cmax = 5;
 
 //if tabs already exist, add a new tab after the last tab. If not, create a new tab
 function addTab(table){
@@ -23,7 +27,7 @@ function addTab(table){
 
   last_tab_no++;
 
-  $("div#tabs ul").append("<li><a href='#tab" + last_tab_no + "'>" + "Table" + last_tab_no + "</a></li>");
+  $("div#tabs ul").append("<li><a href='#tab" + last_tab_no + "'>" + "Table" + last_tab_no + "</a>" + "<input type='checkbox' val='tabcheck"+ last_tab_no +"'>" + "</li>");
   // append table to the tab
   var last_div = $("div#tabs:last-child");
   $("div#tabs").append("<div id='tab" + last_tab_no + "'>" + table.outerHTML + "</div>");
@@ -33,7 +37,7 @@ function addTab(table){
   }
   //otherwise, create the first tab
   else{
-    $("div#tabs ul").append("<li><a href='#tab" + 1 + "'>" + "Table" + 1 + "</a></li>");
+    $("div#tabs ul").append("<li><a href='#tab" + 1 + "'>" + "Table" + 1 + "</a>" + "<input type='checkbox' val='tabcheck"+ 1 +"'>" +"</li>");
     $("div#tabs").append("<div id='tab" + 1 + "'>" + table.outerHTML + "</div>");
     $("div#tabs").tabs("refresh");
     $("div#tabs").tabs( "option", "active", 0 );
@@ -231,6 +235,17 @@ $("#addTabs").on("click", function() {
 //Allows user to delete tabs when del-tab button is clicked
 $("#delTabs").on("click", function() {
   delCurrTab();
+});
+
+//Allows user to select and delete specific tabs
+$("#delSelectedTabs").on("click", function() {
+  $("input:checkbox").each(function() {
+        if ($(this).is(":checked")) {
+          var tab_num = $(this).attr("val").replace("tabcheck", "");
+          $("div#tab" + tab_num).remove();
+          $(this).parent().remove();
+        }
+    });
 });
 
 
