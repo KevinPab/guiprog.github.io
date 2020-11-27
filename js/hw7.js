@@ -10,29 +10,74 @@ var tabID = "table";
 var tabsNum = 0;
 var table;
 
-//add table requires a table and will generate a table with a given tab
-function addTab(table, num){
-  $("div#tabs ul").append("<li><a href='#tab" + num + "'>" + "Table" + num + "</a></li>");
+//if tabs already exist, add a new tab after the last tab. If not, create a new tab
+function addTab(table){
+  tabsNum++;
+  // If tab already exists, add a new tab after a last tab
+  if($("div#tabs ul li").length != 0){
+  // obtain the last tab to get info about its number
+  var last_child = $("div#tabs ul li:last-child");
+
+  //get the number of the last tab
+  var last_tab_no = last_child.attr("aria-controls").replace("tab", "");
+
+  last_tab_no++;
+
+  $("div#tabs ul").append("<li><a href='#tab" + last_tab_no + "'>" + "Table" + last_tab_no + "</a></li>");
   // append table to the tab
-  $("div#tabs").append("<div id='tab" + num + "'>" + table.outerHTML + "</div>");
+  var last_div = $("div#tabs:last-child");
+  $("div#tabs").append("<div id='tab" + last_tab_no + "'>" + table.outerHTML + "</div>");
   $("div#tabs").tabs("refresh");
   // Make the newly created table active
-  $("div#tabs").tabs( "option", "active", num );
-  tabsNum++;
-
-  //USED FOR DEBUG, DELETE LATER
-  console.log($("#tabs").tabs('option', 'active'));
+  $("div#tabs").tabs( "option", "active", last_tab_no );
+  }
+  //otherwise, create the first tab
+  else{
+    $("div#tabs ul").append("<li><a href='#tab" + 1 + "'>" + "Table" + 1 + "</a></li>");
+    $("div#tabs").append("<div id='tab" + 1 + "'>" + table.outerHTML + "</div>");
+    $("div#tabs").tabs("refresh");
+    $("div#tabs").tabs( "option", "active", 0 );
+  }
 }
 
-function delTab(tab_id){
-  if (tabsNum > 0){
-    var active_tab = $("#tabs").tabs('option', 'active');
-    $("#tabs #tab" + active_tab).remove();
-    $("a[href$=tab" + active_tab + "]").parent().remove();
+//Deletes current tab
+function delCurrTab(){
+
+  //if there are less than 2 tabs less, tab1 will be displayed by default
+  var tab_to_activate = 1;
   
-    tabsNum--;
-    console.log(tabsNum);
-}
+  //extract the index of the currently active tab to be used in deletion
+    //Only delete tabs if there are more than 1 tab remaining
+    //if there are two or more tabs left, make the previous tab an active tab after deletion of current tab
+  if($("div#tabs ul").length > 0){
+
+    var active_tab = $("div#tabs ul li[class~='ui-state-active']").attr("aria-controls").replace("tab","");
+    var active_tab_index = $("div#tabs ul li[class~='ui-state-active']").index();
+    var prev_tab;
+    var prev_tab_num;
+    if(active_tab_index != 0){
+      prev_tab = $("div#tabs ul li[class~='ui-state-active']").prev();
+      prev_tab_num = prev_tab.attr("aria-controls").replace("tab","");
+    }else{
+      $("#tabs #tab" + active_tab).remove();
+      $("a[href$=tab" + active_tab + "]").parent().remove();
+      $("div#tabs").tabs("refresh");
+      $( "#tabs" ).tabs( "option", "active", 0);
+      return;
+    }
+    //remove the div element belonging to the tab
+    $("#tabs #tab" + active_tab).remove();
+
+    //remove the li element belonging to the tab
+    $("a[href$=tab" + active_tab + "]").parent().remove();
+    //Decrease the total number of tabs left
+
+    console.log("temp tab index:" + prev_tab.index());
+    // Activate another tab immediately
+    $("div#tabs").tabs("refresh");
+    $( "#tabs" ).tabs( "option", "active", prev_tab.index());
+  }
+  
 }
 
 
@@ -63,7 +108,7 @@ $.validator.addMethod("rowTest", function(value, param) {
 $(document).ready(function() {
   var tabs = $( "#tabs" ).tabs();
   table = generateTable(1, 5, 1, 5, tabID);
-  addTab(table,tabsNum);
+  addTab(table);
 
   /*Validate the form to check all field is valid*/
   $("#inputForm").validate({
@@ -192,8 +237,7 @@ $("#addTabs").on("click", function() {
 
 //Allows user to delete tabs when del-tab button is clicked
 $("#delTabs").on("click", function() {
-  delTab(tabsNum);
-
+  delCurrTab();
 });
 
 

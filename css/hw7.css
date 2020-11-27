@@ -18,7 +18,10 @@ body{
 	margin-right: auto;
 	margin-top: 1.5vw;
 }
-
+.ui-tabs-panel{
+	height: 17vw;
+	overflow:auto;
+}
 hr{
 	background-color: grey;
 	height: 1px;
@@ -37,8 +40,8 @@ hr{
 	grid-template-areas:
 	"icon header header header header header header ."
 	"hr hr hr hr hr hr hr hr"
-	"input input input input . . . ."
-	". tabs tabs tabs tabs . . . ";
+	". input input input input . . ."
+	". . tabs tabs tabs tabs . . ";
 	grid-gap: 5px;
 }
 .icon{
@@ -113,7 +116,7 @@ input::-webkit-inner-spin-button {
 	outline:none;
 	text-align: center;
 }
-#generate_btn, #addTabs ,#delTabs{
+#generate_btn, #addTabs ,#delTabs, #delSelectedTabs{
 	float: right;
 	border-radius: 26px;
 	margin-left: 0.5vw;
@@ -128,15 +131,8 @@ input::-webkit-inner-spin-button {
 	outline:none;
 	box-shadow: 0.2vw 0.2vw 0.2vw 0px  rgba(0,0,0,0.4);
 }
-#delTabs{
-	width: 8vw;
-}
-/*table*/
-.tableGrid{
-	margin-top: 2%;
-	height: 38vw;
-	width: 55vw;
-	overflow: auto; /*allow scrolling*/
+#delTabs, #delSelectedTabs{
+	width: 12vw;
 }
 /*Note: make border for the table*/
 table{
@@ -147,7 +143,6 @@ table{
 }
 /*Decorate each cell of table here*/
 td{
-
   font-family: Courier New;
   font-size: 0.8vw;
   font-weight: bold;
