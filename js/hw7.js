@@ -42,42 +42,35 @@ function addTab(table){
 
 //Deletes current tab
 function delCurrTab(){
-
-  //if there are less than 2 tabs less, tab1 will be displayed by default
-  var tab_to_activate = 1;
-  
-  //extract the index of the currently active tab to be used in deletion
-    //Only delete tabs if there are more than 1 tab remaining
-    //if there are two or more tabs left, make the previous tab an active tab after deletion of current tab
+  //Only delete tabs if there is at least 1 tab remaining
   if($("div#tabs ul").length > 0){
 
+    //get the tab number to be deleted
     var active_tab = $("div#tabs ul li[class~='ui-state-active']").attr("aria-controls").replace("tab","");
+    // get the index
     var active_tab_index = $("div#tabs ul li[class~='ui-state-active']").index();
-    var prev_tab;
-    var prev_tab_num;
-    if(active_tab_index != 0){
-      prev_tab = $("div#tabs ul li[class~='ui-state-active']").prev();
-      prev_tab_num = prev_tab.attr("aria-controls").replace("tab","");
-    }else{
-      $("#tabs #tab" + active_tab).remove();
-      $("a[href$=tab" + active_tab + "]").parent().remove();
-      $("div#tabs").tabs("refresh");
-      $( "#tabs" ).tabs( "option", "active", 0);
-      return;
-    }
+
+    //get its sibling so that the tab on the left could be opened
+    var prev_tab = $("div#tabs ul li[class~='ui-state-active']").prev();
+
     //remove the div element belonging to the tab
     $("#tabs #tab" + active_tab).remove();
 
     //remove the li element belonging to the tab
     $("a[href$=tab" + active_tab + "]").parent().remove();
-    //Decrease the total number of tabs left
 
-    console.log("temp tab index:" + prev_tab.index());
-    // Activate another tab immediately
+    // refresh
     $("div#tabs").tabs("refresh");
-    $( "#tabs" ).tabs( "option", "active", prev_tab.index());
+    
+    //tab removed wasn't the first tab, so activate a tab to the left
+    if(active_tab_index != 0){
+      $( "#tabs" ).tabs( "option", "active", prev_tab.index());
+    }
+    //else the first tab was removed, so open the tab immediately next to it(right)
+    else{
+      $( "#tabs" ).tabs( "option", "active", 0);
+    }
   }
-  
 }
 
 
