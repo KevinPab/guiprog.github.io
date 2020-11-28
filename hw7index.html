@@ -31,7 +31,8 @@ paprawin_boonyakida@student.uml.edu
 	  <!--Instructions for the user-->
 	  <p id="userPrompt"> Enter numbers between -50 and 50: </p>
 	  <p id="specialNote"> Note: decimals are floored(rounded down) for simplicity </p>
-	  <p id="specialNoteTwo"> Press "Update" to update currently opened table </p>
+	  <p id="specialNoteTwo"> Press "Update Table" to update the table with your custom numbers </p>
+	  <p id="specialNote"> (Each new tab creates a default 5x5 table) </p>
 	  <!--Form for user to type in their numbers.Input type='number' filters out unwanted types-->
       <form name="inputForm" id="inputForm">
         <a>
@@ -61,7 +62,7 @@ paprawin_boonyakida@student.uml.edu
         <button type="button" id="delTabs">Delete Current Tab</button>
         <button type="button" id="delSelectedTabs">Delete Selected Tabs</button>
         <!--When this button is clicked, js will generate a table in the next div-->	
-        <button type="submit" id="generate_btn"> Update </button>
+        <button type="submit" id="generate_btn"> Update Table </button>
 
         <!--Hidden button used for debugging purpose only-->
         <button type="submit" id="debug_btn"> DEBUG </button>

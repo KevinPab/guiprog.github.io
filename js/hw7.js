@@ -16,13 +16,6 @@ var def_rmax = 5;
 var def_cmin = 1;
 var def_cmax = 5;
 
-var current_tab = 0;
-
-var valid_table = false;
-
-
-
-
 /*Test to determine if column max > min to flag the error*/
 $.validator.addMethod("colTest", function(value, param) {
   
@@ -48,9 +41,14 @@ $.validator.addMethod("rowTest", function(value, param) {
 
 /*make sure document is ready*/
 $(document).ready(function() {
+  //initialize tabs feature
   var tabs = $( "#tabs" ).tabs();
-  table = generateTable(def_cmin, def_cmax, def_rmin, def_rmax, tabID);
-  addTab(table);
+
+  //create default table
+  var default_table = generateTable(def_cmin, def_cmax, def_rmin, def_rmax, tabID);
+
+  //create a first default tab with 5x5 multiplication table
+  addTab(default_table);
 
   //put default values into the slider
   $("#colMin").val( def_cmin );
@@ -117,9 +115,6 @@ $(document).ready(function() {
       e.preventDefault();
 	    console.log("document validated!");
       bind_slider();
-	  /*Call the function to generate table using the validated input from user
-	    Also parse the input values into integers*/
-      table = generateTable(parseInt($("#colMin").val()),parseInt($("#colMax").val()),parseInt($("#rowMin").val()),parseInt($("#rowMax").val()),tabID);
     }
   });
 
@@ -183,6 +178,7 @@ $(document).ready(function() {
 //ALL functions below are created just for homework7
 
 //Update the table to display dynamically
+//Note: this function also updates the panel name associated with the table
 function update_table(){
   var colMin = parseInt($("#colMin").val());
   var colMax = parseInt($("#colMax").val());
@@ -201,6 +197,9 @@ function update_table(){
   var tmp_table = generateTable(colMin, colMax, rowMin, rowMax, tabID);
 
   currently_active_tab_div.append(tmp_table.outerHTML);
+
+  var curently_active_tab_panel = $("div#tabs ul li[class~='ui-state-active']");
+  curently_active_tab_panel.find("a").text("Col(" + colMin + "," + colMax + ") Row(" + rowMin + "," + rowMax + ")");
 
   //do a tab refresh 
   $("div#tabs").tabs("refresh");
@@ -226,8 +225,17 @@ $("#delSelectedTabs").on("click", function() {
   $("div#tabs").tabs("refresh");
 });
 
+//update panel name according to the values used for the table
+function update_panel_name(){
+  var colMin = parseInt($("#colMin").val());
+  var colMax = parseInt($("#colMax").val());
+  var rowMin = parseInt($("#rowMin").val());
+  var rowMax = parseInt($("#rowMax").val());
+
+}
+
 //Allows user to add new tab. If tab already exists, add a new tab next to existing tab
-function addTab(table){
+function addTab(input_table){
   tabsNum++;
   // If tab already exists, add a new tab after a last tab
   if($("div#tabs ul li").length != 0){
@@ -241,17 +249,17 @@ function addTab(table){
   last_tab_no++;
   
   //Append table to tab
-  $("div#tabs ul").append("<li><a href='#tab" + last_tab_no + "'>" + "Table" + last_tab_no + "</a>" + "<input type='checkbox' id='cbox' val='tabcheck"+ last_tab_no +"'>" + "</li>");
+  $("div#tabs ul").append("<li><a href='#tab" + last_tab_no + "'>" + "New Tab" + "</a>" + "<input type='checkbox' id='cbox' val='tabcheck"+ last_tab_no +"'>" + "</li>");
   var last_div = $("div#tabs:last-child");
-  $("div#tabs").append("<div id='tab" + last_tab_no + "'>" + table.outerHTML + "</div>");
+  $("div#tabs").append("<div id='tab" + last_tab_no + "'>" + input_table.outerHTML + "</div>");
   $("div#tabs").tabs("refresh");
   // Make the newly created table active
   $("div#tabs").tabs( "option", "active", last_tab_no );
   }
   //otherwise, create the first tab no no tab exists
   else{
-    $("div#tabs ul").append("<li><a href='#tab" + 1 + "'>" + "Table" + 1 + "</a>" + "<input type='checkbox' id='cbox' val='tabcheck"+ 1 +"'>" +"</li>");
-    $("div#tabs").append("<div id='tab" + 1 + "'>" + table.outerHTML + "</div>");
+    $("div#tabs ul").append("<li><a href='#tab" + 1 + "'>" + "New Tab" + "</a>" + "<input type='checkbox' id='cbox' val='tabcheck"+ 1 +"'>" +"</li>");
+    $("div#tabs").append("<div id='tab" + 1 + "'>" + input_table.outerHTML + "</div>");
     $("div#tabs").tabs("refresh");
     $("div#tabs").tabs( "option", "active", 0 );
   }
@@ -344,7 +352,8 @@ function removeOldTab(tabID){
 
 // Allows user to add more tabs when the add-tab button is clicked
 $("#addTabs").on("click", function() {
-  addTab(table, tabsNum);
+  var new_table = generateTable(def_cmin, def_rmax, def_rmin, def_rmax, tabID);
+  addTab(new_table);
 });
 
 //Allows user to delete tabs when del-tab button is clicked
