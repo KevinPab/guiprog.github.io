@@ -193,13 +193,16 @@ function update_table(){
 
   //Remove the current table within the currently active tab
   currently_active_tab_div.empty();
-
+  
+  //create a table using the values obtained from the input text field
   var tmp_table = generateTable(colMin, colMax, rowMin, rowMax, tabID);
 
+  //add the table to the current tab
   currently_active_tab_div.append(tmp_table.outerHTML);
 
+  //Also update the panel name to display the min and max row/column values used
   var curently_active_tab_panel = $("div#tabs ul li[class~='ui-state-active']");
-  curently_active_tab_panel.find("a").text("Col(" + colMin + "," + colMax + ") Row(" + rowMin + "," + rowMax + ")");
+  curently_active_tab_panel.find("a").text("Col(" + colMin + " to " + colMax + ") Row(" + rowMin + " to " + rowMax + ")");
 
   //do a tab refresh 
   $("div#tabs").tabs("refresh");
@@ -213,7 +216,7 @@ function bind_slider(){
   $( "#slider4" ).slider( "value", $("#rowMax").val() );
 }
 
-//Allows user to select and delete specific tabs
+//Deletes multiple(selected) tabs when after user press this button
 $("#delSelectedTabs").on("click", function() {
   $("input:checkbox").each(function() {
         if ($(this).is(":checked")) {
@@ -224,15 +227,6 @@ $("#delSelectedTabs").on("click", function() {
     });
   $("div#tabs").tabs("refresh");
 });
-
-//update panel name according to the values used for the table
-function update_panel_name(){
-  var colMin = parseInt($("#colMin").val());
-  var colMax = parseInt($("#colMax").val());
-  var rowMin = parseInt($("#rowMin").val());
-  var rowMax = parseInt($("#rowMax").val());
-
-}
 
 //Allows user to add new tab. If tab already exists, add a new tab next to existing tab
 function addTab(input_table){
@@ -361,18 +355,13 @@ $("#delTabs").on("click", function() {
   delCurrTab();
 });
 
-$("#debug_btn").on("click", function() {
-  console.log("DEBUG BTN IS CLICKED!");
-  $("#inputForm").validate();
-});
-
 //Perform slider binding when the submit button is pressed
+//The actual name of this button is now "Update Table"
 $("#generate_btn").on("click", function(){
   //if the input from user is valid, update the slider and the table
   if($("#inputForm").valid()){
     update_table();
     update_slider();
-
   }
 
 });
