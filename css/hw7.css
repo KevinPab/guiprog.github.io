@@ -32,6 +32,13 @@ body{
 #slider1, #slider2, #slider3, #slider4{
 	width: 18vw;
 }
+
+
+.ui-state-focus a:focus{
+	outline:none;
+}
+
+/*Hidden button used for debugging purposes only*/
 #debug_btn{
 	display:none;
 }
@@ -73,7 +80,7 @@ hr{
 
 #title{
 	font-size: 2vw;
-	color: #008CBA;
+	color: #00A36F;
 	margin-top: 0.4vw;
 	margin-bottom: 0;
 }
@@ -81,13 +88,17 @@ hr{
 	font-size:2vw;
 	color: #FD5C0C;
 }
-#userPrompt, #specialNote{
-	color: #008CBA; /*light blue*/
+#userPrompt, #specialNote, #specialNoteTwo{
+	color: #009364; /*light blue*/
 	font-size: 1.1vw;
 }
 #errMessage{
 	color: #FA1D1D; /*red*/
 }
+label{
+	color: #3000B2;
+}
+
 .inputGrid{
 	grid-area: input;
 	float:left;
@@ -133,16 +144,16 @@ input::-webkit-inner-spin-button {
 	width: 6.5vw;
 	box-shadow: 0.2vw 0.2vw 0.2vw 0px rgba(0,0,0,0.2);
 	border: solid 1px black;
-	border-color: #008CBA;
+	border-color: #00A36F;
 	outline:none;
 	text-align: center;
 }
 #generate_btn, #addTabs ,#delTabs, #delSelectedTabs{
 	border-radius: 26px;
 	margin-left: 0.5vw;
-	width: 6.5vw;
+	width: 8.5vw;
 	font-size: 1.2vw;
-	background-color: #008CBA;
+	background-color: #00A36F; /*old #008CBA;*/
     color: white;
     text-align: center;
     text-decoration: none;
@@ -157,7 +168,7 @@ input::-webkit-inner-spin-button {
 /*Note: make border for the table*/
 table{
 	border-style: solid;
-	border-color: #3652FF;
+	border-color: #009364;
 	border-width: 0.18vw;
 	border-collapse: collapse;
 }

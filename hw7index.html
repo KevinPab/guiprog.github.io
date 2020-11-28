@@ -10,7 +10,7 @@ paprawin_boonyakida@student.uml.edu
   <title>Homework 7</title>
   <link rel="stylesheet" href="css/hw7.css" />
   <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-  <link href= 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css' rel='stylesheet'>
+  <link href= 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/south-street/jquery-ui.css' rel='stylesheet'>
 
 </head>
 <body>
@@ -31,7 +31,7 @@ paprawin_boonyakida@student.uml.edu
 	  <!--Instructions for the user-->
 	  <p id="userPrompt"> Enter numbers between -50 and 50: </p>
 	  <p id="specialNote"> Note: decimals are floored(rounded down) for simplicity </p>
-	  <p id="specialNote"> Press "Submit" to send in numbers you manually entered  </p>
+	  <p id="specialNoteTwo"> Press "Update" to update currently opened table </p>
 	  <!--Form for user to type in their numbers.Input type='number' filters out unwanted types-->
       <form name="inputForm" id="inputForm">
         <a>
@@ -57,11 +57,11 @@ paprawin_boonyakida@student.uml.edu
         </a>
 
 
-        <button type="button" id="addTabs">Add Tab</button>
+        <button type="button" id="addTabs">Add New Tab</button>
         <button type="button" id="delTabs">Delete Current Tab</button>
         <button type="button" id="delSelectedTabs">Delete Selected Tabs</button>
         <!--When this button is clicked, js will generate a table in the next div-->	
-        <button type="submit" id="generate_btn"> Submit </button>
+        <button type="submit" id="generate_btn"> Update </button>
 
         <!--Hidden button used for debugging purpose only-->
         <button type="submit" id="debug_btn"> DEBUG </button>
