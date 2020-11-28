@@ -31,29 +31,40 @@ paprawin_boonyakida@student.uml.edu
 	  <!--Instructions for the user-->
 	  <p id="userPrompt"> Enter numbers between -50 and 50: </p>
 	  <p id="specialNote"> Note: decimals are floored(rounded down) for simplicity </p>
+	  <p id="specialNote"> Press "Submit" to send in numbers you manually entered  </p>
 	  <!--Form for user to type in their numbers.Input type='number' filters out unwanted types-->
       <form name="inputForm" id="inputForm">
         <a>
           <label for="colMin">Minimum Column value</label>
+          <!--Add slider-->
+          <div id="slider1" class="myslide"></div>
           <input type="number" id="colMin" name="colMin" autocomplete="off"/>
         </a>
         <a>
           <label for="colMax">Maximum Column value</label>
+          <div id="slider2" class="myslide"></div>
           <input type="number" id="colMax" name="colMax" autocomplete="off"/>
         </a>
         <a>
           <label for="rowMin">Minimum Row value</label>
+          <div id="slider3" class="myslide"></div>
           <input type="number" id="rowMin" name="rowMin" autocomplete="off"/>
         </a>
         <a>
           <label for="rowMax">Maximum Row value</label>
+          <div id="slider4" class="myslide"></div>
           <input type="number" id="rowMax" name="rowMax" autocomplete="off"/>
         </a>
-		<!--When this button is clicked, js will generate a table in the next div-->
-		<button type="button" id="delSelectedTabs">Delete Selected Tabs</button>
-		<button type="button" id="delTabs">Delete Current Tab</button>
-		<button type="button" id="addTabs">Add Tab</button>
-        <button type="submit" id="generate_btn"> Generate </button>
+
+
+        <button type="button" id="addTabs">Add Tab</button>
+        <button type="button" id="delTabs">Delete Current Tab</button>
+        <button type="button" id="delSelectedTabs">Delete Selected Tabs</button>
+        <!--When this button is clicked, js will generate a table in the next div-->	
+        <button type="submit" id="generate_btn"> Submit </button>
+
+        <!--Hidden button used for debugging purpose only-->
+        <button type="submit" id="debug_btn"> DEBUG </button>
 
       </form>
     </div>

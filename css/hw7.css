@@ -27,9 +27,14 @@ body{
 #cbox{
   width: 1.1vw;
   height: 1.1vw;
-
 }
 
+#slider1, #slider2, #slider3, #slider4{
+	width: 18vw;
+}
+#debug_btn{
+	display:none;
+}
 hr{
 	background-color: grey;
 	height: 1px;
@@ -38,6 +43,7 @@ hr{
 /*customize margin of error messages*/
 .error{
 	color: red;
+	width: 35vw;
 }
 
 /*Page layout for the grid*/
@@ -48,7 +54,7 @@ hr{
 	grid-template-areas:
 	"icon header header header header header header ."
 	"hr hr hr hr hr hr hr hr"
-	". input input input input . . ."
+	". . input input input input . ."
 	". . tabs tabs tabs tabs . . ";
 	grid-gap: 5px;
 }
@@ -92,7 +98,6 @@ hr{
 	margin-top: 16px;
 }
 .inputGrid a{
-	display: block;
 	margin-bottom: 20px;
 }
 /*Font of the user input prompt*/
@@ -101,7 +106,16 @@ hr{
 	font-weight: bold;
 	margin-top: 5px;
 	margin-bottom: 5px;
-
+}
+#inputForm a{
+	display:block;
+}
+/*make all elements relating to user input inline-block*/
+#inputForm a > *{
+	display:inline-block;
+}
+a > label{
+	width: 15vw;
 }
 /*Remove unwanted arrows in the user input-field.
   Source: https://www.w3schools.com/howto/howto_css_hide_arrow_number.asp
@@ -115,7 +129,6 @@ input::-webkit-inner-spin-button {
 #colMin, #colMax, #rowMin, #rowMax{
 	margin-top: 1px;
 	margin-left: 15px;
-	float: right;
 	height: 30px;
 	width: 6.5vw;
 	box-shadow: 0.2vw 0.2vw 0.2vw 0px rgba(0,0,0,0.2);
@@ -125,7 +138,6 @@ input::-webkit-inner-spin-button {
 	text-align: center;
 }
 #generate_btn, #addTabs ,#delTabs, #delSelectedTabs{
-	float: right;
 	border-radius: 26px;
 	margin-left: 0.5vw;
 	width: 6.5vw;

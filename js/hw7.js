@@ -9,73 +9,18 @@ paprawin_boonyakida@student.uml.edu
 var tabID = "table"; 
 var tabsNum = 0;
 var table;
-var rmin = 1;
-var rmax = 5;
-var cmin = 1;
-var cmax = 5;
 
-//if tabs already exist, add a new tab after the last tab. If not, create a new tab
-function addTab(table){
-  tabsNum++;
-  // If tab already exists, add a new tab after a last tab
-  if($("div#tabs ul li").length != 0){
-  // obtain the last tab to get info about its number
-  var last_child = $("div#tabs ul li:last-child");
+//Default min and max values for column and row
+var def_rmin = 1;
+var def_rmax = 5;
+var def_cmin = 1;
+var def_cmax = 5;
 
-  //get the number of the last tab
-  var last_tab_no = last_child.attr("aria-controls").replace("tab", "");
+var current_tab = 0;
 
-  last_tab_no++;
+var valid_table = false;
 
-  $("div#tabs ul").append("<li><a href='#tab" + last_tab_no + "'>" + "Table" + last_tab_no + "</a>" + "<input type='checkbox' id='cbox' val='tabcheck"+ last_tab_no +"'>" + "</li>");
-  // append table to the tab
-  var last_div = $("div#tabs:last-child");
-  $("div#tabs").append("<div id='tab" + last_tab_no + "'>" + table.outerHTML + "</div>");
-  $("div#tabs").tabs("refresh");
-  // Make the newly created table active
-  $("div#tabs").tabs( "option", "active", last_tab_no );
-  }
-  //otherwise, create the first tab
-  else{
-    $("div#tabs ul").append("<li><a href='#tab" + 1 + "'>" + "Table" + 1 + "</a>" + "<input type='checkbox' id='cbox' val='tabcheck"+ 1 +"'>" +"</li>");
-    $("div#tabs").append("<div id='tab" + 1 + "'>" + table.outerHTML + "</div>");
-    $("div#tabs").tabs("refresh");
-    $("div#tabs").tabs( "option", "active", 0 );
-  }
-}
 
-//Deletes current tab
-function delCurrTab(){
-  //Only delete tabs if there is at least 1 tab remaining
-  if($("div#tabs ul").length > 0){
-
-    //get the tab number to be deleted
-    var active_tab = $("div#tabs ul li[class~='ui-state-active']").attr("aria-controls").replace("tab","");
-    // get the index
-    var active_tab_index = $("div#tabs ul li[class~='ui-state-active']").index();
-
-    //get its sibling so that the tab on the left could be opened
-    var prev_tab = $("div#tabs ul li[class~='ui-state-active']").prev();
-
-    //remove the div element belonging to the tab
-    $("#tabs #tab" + active_tab).remove();
-
-    //remove the li element belonging to the tab
-    $("a[href$=tab" + active_tab + "]").parent().remove();
-
-    // refresh
-    $("div#tabs").tabs("refresh");
-    
-    //tab removed wasn't the first tab, so activate a tab to the left
-    if(active_tab_index != 0){
-      $( "#tabs" ).tabs( "option", "active", prev_tab.index());
-    }
-    //else the first tab was removed, so open the tab immediately next to it(right)
-    else{
-      $( "#tabs" ).tabs( "option", "active", 0);
-    }
-  }
-}
 
 
 /*Test to determine if column max > min to flag the error*/
@@ -104,10 +49,17 @@ $.validator.addMethod("rowTest", function(value, param) {
 /*make sure document is ready*/
 $(document).ready(function() {
   var tabs = $( "#tabs" ).tabs();
-  table = generateTable(1, 5, 1, 5, tabID);
+  table = generateTable(def_cmin, def_cmax, def_rmin, def_rmax, tabID);
   addTab(table);
 
+  //put default values into the slider
+  $("#colMin").val( def_cmin );
+  $("#colMax").val( def_cmax );
+  $("#rowMin").val( def_rmin );
+  $("#rowMax").val( def_rmax );
+
   /*Validate the form to check all field is valid*/
+  var my_input = $("#inputForm");
   $("#inputForm").validate({
     /*Define rules to validate the input before data are submitted*/
     rules: {
@@ -163,17 +115,180 @@ $(document).ready(function() {
     submitHandler: function(form, e){
       /*prevent page from refreshing when the user submits*/
       e.preventDefault();
-	  
-	  /* removes old table*/
-      removeOldTab(tabID); 
-	  
+	    console.log("document validated!");
+      bind_slider();
 	  /*Call the function to generate table using the validated input from user
 	    Also parse the input values into integers*/
-      generateTable(parseInt($("#colMin").val()),parseInt($("#colMax").val()),parseInt($("#rowMin").val()),parseInt($("#rowMax").val()),tabID);
+      table = generateTable(parseInt($("#colMin").val()),parseInt($("#colMax").val()),parseInt($("#rowMin").val()),parseInt($("#rowMax").val()),tabID);
+    }
+  });
+
+
+  // Initialize sliders to a specific default value
+  // Note that the numbers on the slide are error-free,
+  // so the slider will also update the values in the input field without requiring validation
+  //Min Column
+  $("#slider1").slider({
+      range: "min",
+      value: 1,
+      min: -50,
+      max: 50,
+      slide: function( event, ui ) {
+      $("#colMin").val( ui.value );
+      }
+  });
+  //Max Column
+  $("#slider2").slider({
+      range: "min",
+      value: 5,
+      min: -50,
+      max: 50,
+      slide: function( event, ui ) {
+      $("#colMax").val( ui.value );
+      }
+  });
+  //Min Row
+  $("#slider3").slider({
+      range: "min",
+      value: 1,
+      min: -50,
+      max: 50,
+      slide: function( event, ui ) {
+      $("#rowMin").val( ui.value );
+      }
+  });
+  //Max Row
+  $("#slider4").slider({
+      range: "min",
+      value: 5,
+      min: -50,
+      max: 50,
+      slide: function( event, ui ) {
+      $("#rowMax").val( ui.value );
+      }
+  });
+
+  //TODO:
+  //     update table when a slider is moved and data is valid
+  //     when any of the slider is triggered, run validation
+  $(".myslide").on("slidechange", function(){
+    //runs the validation rules created earlier
+    if(my_input.valid()){
+      console.log("valid value:" + $("#rowMin").val());
+      update_table();
     }
   });
 });
 
+//ALL functions below are created just for homework7
+
+//Update the table to display dynamically
+function update_table(){
+  var colMin = parseInt($("#colMin").val());
+  var colMax = parseInt($("#colMax").val());
+  var rowMin = parseInt($("#rowMin").val());
+  var rowMax = parseInt($("#rowMax").val());
+
+  //get tab number where table should be removed
+  var currently_active_tab_id = $("div#tabs ul li[class~='ui-state-active']").attr("aria-controls");
+
+  //get div where table is stored
+  var currently_active_tab_div = $("#" + currently_active_tab_id);
+
+  //Remove the current table within the currently active tab
+  currently_active_tab_div.empty();
+
+  var tmp_table = generateTable(colMin, colMax, rowMin, rowMax, tabID);
+
+  currently_active_tab_div.append(tmp_table.outerHTML);
+
+  //do a tab refresh 
+  $("div#tabs").tabs("refresh");
+}
+
+//allows the slider to change according to the user's input number
+function bind_slider(){  
+  $( "#slider1" ).slider( "value", $("#colMin").val() );
+  $( "#slider2" ).slider( "value", $("#colMax").val() );
+  $( "#slider3" ).slider( "value", $("#rowMin").val() );
+  $( "#slider4" ).slider( "value", $("#rowMax").val() );
+}
+
+//Allows user to select and delete specific tabs
+$("#delSelectedTabs").on("click", function() {
+  $("input:checkbox").each(function() {
+        if ($(this).is(":checked")) {
+          var tab_num = $(this).attr("val").replace("tabcheck", "");
+          $("div#tab" + tab_num).remove();
+          $(this).parent().remove();
+        }
+    });
+  $("div#tabs").tabs("refresh");
+});
+
+//Allows user to add new tab. If tab already exists, add a new tab next to existing tab
+function addTab(table){
+  tabsNum++;
+  // If tab already exists, add a new tab after a last tab
+  if($("div#tabs ul li").length != 0){
+  // obtain the last tab to get info about its number
+  var last_child = $("div#tabs ul li:last-child");
+
+  //get the number of the last tab
+  var last_tab_no = last_child.attr("aria-controls").replace("tab", "");
+  
+  //increment this so we can create a new tab next to the current tab
+  last_tab_no++;
+  
+  //Append table to tab
+  $("div#tabs ul").append("<li><a href='#tab" + last_tab_no + "'>" + "Table" + last_tab_no + "</a>" + "<input type='checkbox' id='cbox' val='tabcheck"+ last_tab_no +"'>" + "</li>");
+  var last_div = $("div#tabs:last-child");
+  $("div#tabs").append("<div id='tab" + last_tab_no + "'>" + table.outerHTML + "</div>");
+  $("div#tabs").tabs("refresh");
+  // Make the newly created table active
+  $("div#tabs").tabs( "option", "active", last_tab_no );
+  }
+  //otherwise, create the first tab no no tab exists
+  else{
+    $("div#tabs ul").append("<li><a href='#tab" + 1 + "'>" + "Table" + 1 + "</a>" + "<input type='checkbox' id='cbox' val='tabcheck"+ 1 +"'>" +"</li>");
+    $("div#tabs").append("<div id='tab" + 1 + "'>" + table.outerHTML + "</div>");
+    $("div#tabs").tabs("refresh");
+    $("div#tabs").tabs( "option", "active", 0 );
+  }
+}
+
+//Deletes current tab
+function delCurrTab(){
+  //Only delete tabs if there is at least 1 tab remaining
+  if($("div#tabs ul").length > 0){
+
+    //get the tab number to be deleted
+    var active_tab = $("div#tabs ul li[class~='ui-state-active']").attr("aria-controls").replace("tab","");
+    // get the index
+    var active_tab_index = $("div#tabs ul li[class~='ui-state-active']").index();
+
+    //get its sibling so that the tab on the left could be opened
+    var prev_tab = $("div#tabs ul li[class~='ui-state-active']").prev();
+
+    //remove the div element belonging to the tab
+    $("#tabs #tab" + active_tab).remove();
+
+    //remove the li element belonging to the tab
+    $("a[href$=tab" + active_tab + "]").parent().remove();
+
+    // refresh
+    $("div#tabs").tabs("refresh");
+    
+    //tab removed wasn't the first tab, so activate a tab to the left
+    if(active_tab_index != 0){
+      $( "#tabs" ).tabs( "option", "active", prev_tab.index());
+    }
+    //else the first tab was removed, so open the tab immediately next to it(right)
+    else{
+      $( "#tabs" ).tabs( "option", "active", 0);
+    }
+  }
+}
 
 /*Table Generator:
   Only correctly validated values are accepted,
@@ -237,21 +352,19 @@ $("#delTabs").on("click", function() {
   delCurrTab();
 });
 
-//Allows user to select and delete specific tabs
-$("#delSelectedTabs").on("click", function() {
-  $("input:checkbox").each(function() {
-        if ($(this).is(":checked")) {
-          var tab_num = $(this).attr("val").replace("tabcheck", "");
-          $("div#tab" + tab_num).remove();
-          $(this).parent().remove();
-        }
-    });
-  $("div#tabs").tabs("refresh");
+$("#debug_btn").on("click", function() {
+  console.log("DEBUG BTN IS CLICKED!");
+  $("#inputForm").validate();
 });
 
+//Perform slider binding when the submit button is pressed
+$("#generate_btn").on("click", function(){
+  //if the input from user is valid, update the slider and the table
+  if($("#inputForm").valid()){
+    update_table();
+    update_slider();
 
+  }
 
-//initialize tabs
-//$("#tabs").tabs();
-//table = generateTable(1, 5, 1, 5, tabID);
-//addTab(table, tabsNum);
+});
+
