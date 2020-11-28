@@ -163,19 +163,18 @@ $(document).ready(function() {
       }
   });
 
-  //TODO:
-  //     update table when a slider is moved and data is valid
-  //     when any of the slider is triggered, run validation
+  //only update table when a slider is moved and data is valid
   $(".myslide").on("slidechange", function(){
-    //runs the validation rules created earlier
+    //make sure data are valid
     if(my_input.valid()){
       console.log("valid value:" + $("#rowMin").val());
+      //update table
       update_table();
     }
   });
 });
 
-//ALL functions below are created just for homework7
+//ALL functions below are created just for homework7 except for the generateTable()
 
 //Update the table to display dynamically
 //Note: this function also updates the panel name associated with the table
@@ -363,6 +362,5 @@ $("#generate_btn").on("click", function(){
     update_table();
     update_slider();
   }
-
 });
 

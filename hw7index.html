@@ -31,7 +31,7 @@ paprawin_boonyakida@student.uml.edu
 	  <!--Instructions for the user-->
 	  <p id="userPrompt"> Enter numbers between -50 and 50: </p>
 	  <p id="specialNote"> Note: decimals are floored(rounded down) for simplicity </p>
-	  <p id="specialNoteTwo"> Press "Update Table" to update the table with your custom numbers </p>
+	  <p id="specialNoteTwo"> Press "Apply to Table" to apply the current numebers on display into the table </p>
 	  <p id="specialNote"> (Each new tab creates a default 5x5 table) </p>
 	  <!--Form for user to type in their numbers.Input type='number' filters out unwanted types-->
       <form name="inputForm" id="inputForm">
@@ -57,16 +57,11 @@ paprawin_boonyakida@student.uml.edu
           <input type="number" id="rowMax" name="rowMax" autocomplete="off"/>
         </a>
 
-
+        <!-- Add buttons to add tab, delete tab, and delete multiple tabs as required by hw7-->
         <button type="button" id="addTabs">Add New Tab</button>
         <button type="button" id="delTabs">Delete Current Tab</button>
         <button type="button" id="delSelectedTabs">Delete Selected Tabs</button>
-        <!--When this button is clicked, js will generate a table in the next div-->	
-        <button type="submit" id="generate_btn"> Update Table </button>
-
-        <!--Hidden button used for debugging purpose only-->
-        <button type="submit" id="debug_btn"> DEBUG </button>
-
+        <button type="submit" id="generate_btn"> Apply to Table </button>
       </form>
     </div>
 
@@ -88,7 +83,7 @@ paprawin_boonyakida@student.uml.edu
   <!--jQuery UI CDN -->
   <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
   
-  <!-- javascript -->
+  <!-- my javascript-->
   <script src="js/hw7.js"></script>
 </body>
 </html>

@@ -38,10 +38,6 @@ body{
 	outline:none;
 }
 
-/*Hidden button used for debugging purposes only*/
-#debug_btn{
-	display:none;
-}
 hr{
 	background-color: grey;
 	height: 1px;
