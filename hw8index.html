@@ -28,7 +28,7 @@ paprawin_boonyakida@student.uml.edu
 	<div class="lineBr">
 	  <hr>
     <!-- above is a uniform template used for homework 5 through 8-->
-    <!-- below are the contents unique for each homework-->
+    <!-- below are the contents unique for homework 8-->
 	</div>
     <!-- tells user brief instruction-->
     <div class="instruction">
@@ -40,27 +40,31 @@ paprawin_boonyakida@student.uml.edu
       <p id="rules"> Tiles cannot be removed from the board once it is placed </p>
       <p id="rules"> Your total score will be updated at the end of each round </p>
     </div>
-
+    <!--current score of this round-->
     <div class="score">
-      <h1>Score:</h1>
+      <h1>Round Score:</h1>
       <h1 id="actual_score">0</h1>
     </div>
 
+    <!--total score of all rounds combined-->
     <div class="total_score">
       <h1>Total Score:</h1>
       <h1 id="total_score">0</h1>
     </div>
 
+    <!--current string of characters user played this round-->
     <div class="word">
       <h1>Word: </h1>
       <h1 id="actual_word"></h1>
     </div>
 
+    <!--counts number of tiles remaining-->
     <div class="tiles_remaining">
       <h1>Tiles Remaining: </h1>
       <h1 id="tiles_remaining"></h1>
     </div>
 
+    <!-- represents the board where the user has to place letter tiles onto-->
     <div class="board">
       <div><img id="board1" class="droppable vacant" src="images/tiles/Scrabble_Tile__.jpg" value="0"></div>
       <div><img id="board2" class="droppable vacant" src="images/tiles/board_dw.jpg" value="0"></div>
@@ -83,6 +87,7 @@ paprawin_boonyakida@student.uml.edu
       <div><img id="tile7" class="draggable" src=""></div>
     </div>
 
+    <!-- submit and restart buttons-->
     <div class="game_buttons">
       <button type="button" id="submit_btn">Submit</button>
       <button type="button" id="restart_btn">Restart Game</button>

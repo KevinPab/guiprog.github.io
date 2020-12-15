@@ -32,7 +32,7 @@ hr{
 	"hr hr hr hr hr hr hr hr"
 	". . instruction instruction instruction instruction . ."
 	". . rules rules rules rules . . "
-	". . score . total_score total_score . . "
+	". . score score total_score total_score . . "
 	". . board board board board . ."
 	". . word . tiles_remaining tiles_remaining . ."
 	". . rack rack rack rack . ."
@@ -68,7 +68,7 @@ hr{
 }
 .score{
 	grid-area: score;
-	margin-left: 2vw;
+	margin-left: 4vw;
 }
 .score > h1{
 	display: inline-block;
