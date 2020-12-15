@@ -32,7 +32,7 @@ hr{
 	"hr hr hr hr hr hr hr hr"
 	". . instruction instruction instruction instruction . ."
 	". . rules rules rules rules . . "
-	". . score . total_score . . . "
+	". . score . total_score total_score . . "
 	". . board board board board . ."
 	". . word . tiles_remaining tiles_remaining . ."
 	". . rack rack rack rack . ."
@@ -49,6 +49,10 @@ hr{
 	font-size: 1.1vw;
 	font-weight: bold;
 	margin:0;
+}
+#rules_header{
+	font-size: 1.5vw;
+
 }
 .instruction{
 	grid-area: instruction;
@@ -72,7 +76,7 @@ hr{
 }
 .total_score{
 	grid-area: total_score;
-	text-align: center;
+	margin-left: 2vw;
 }
 .total_score > h1{
 	display: inline-block;
@@ -113,7 +117,6 @@ hr{
 .rack{
 	grid-area: rack;
 	height: 10vw;
-
 }
 /*letter tiles inside the rack*/
 .rack > div{
@@ -127,7 +130,7 @@ hr{
 #rack_img{
 	position: absolute;
     width:48vw;
-	height:7vw;
+	height:8.5vw;
 	z-index: -1;
 }
 #tile1, #tile2, #tile3,#tile4,#tile5,#tile6,#tile7{

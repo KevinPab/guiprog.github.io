@@ -181,7 +181,6 @@ $(document).ready(function() {
         else{
           $("#actual_score").text(curr_score);
         }
-        $("#total_score").text(total_score);
 
         //update current word user has just played
         $("#" + event.target.id).attr('value', tile_letter)
@@ -279,3 +278,34 @@ function get_num_remaining(){
   $("#tiles_remaining").text(remaining_tiles);
   //console.log("remaining:" + remaining_tiles);
 }
+
+//refill the missing tiles on the rack when the submit button is pressed
+$("#submit_btn").on("click", function() {
+  //update total score
+  var tot = parseInt($("#total_score").text());
+  tot += parseInt($("#actual_score").text());
+  $("#total_score").text(tot);
+
+  //reset current score
+  $("#actual_score").text("0");
+  
+  //reset word displayer
+  $("#actual_word").text("");
+
+  //reset the value placeholder on each board space
+  var i;
+  for(i = 1; i <= 7; i++){
+    var boardSpace = $("#board" + i);
+    boardSpace.attr('value', "0");
+    boardSpace.removeClass('occupied');
+    boardSpace.addClass('vacant');
+  }
+  //$( "#tile2" ).attr( "style", "position: relative" );
+  //$("#tile2").removeClass("ui-draggable-disabled");
+
+});
+
+//restart the game, so reset everything
+$("#restart_btn").on("click", function() {
+  location.reload();
+});
