@@ -1,0 +1,106 @@
+<!--
+Paprawin Boonyakida
+GUI Programming 1
+Assignment 8: Using Draggable/Droppable to make a single-line scrabble game
+paprawin_boonyakida@student.uml.edu
+-->
+
+<html>
+<head>
+  <title>Homework 8</title>
+  <link rel="stylesheet" href="css/hw8.css" />
+  <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+  <link href= 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/south-street/jquery-ui.css' rel='stylesheet'>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+</head>
+<body>
+  <!--declare container to be used to implement CSS grid-->
+  <div class="container">
+    <div class="icon">
+	  <!--Home button that leads back to my main page-->
+	  <a href="hw4index.html"><i id="homeBtn" class="fas fa-home"></i></a>
+	</div>
+    <div class="header">
+      <h1 id="title">Scrabble ( jQuery Draggable & Droppable )</h1>
+    </div>
+	<div class="lineBr">
+	  <hr>
+    <!-- above is a uniform template used for homework 5 through 8-->
+    <!-- below are the contents unique for each homework-->
+	</div>
+    <!-- tells user brief instruction-->
+    <div class="instruction">
+      <p id="instruction"> Drag and Drop Tiles to Play. Enjoy! </p>
+    </div>
+    <div class="rules">
+      <p id="rules"> Rules: </p>
+      <p id="rules"> Tiles can only be placed next to an existing tile on the board</p>
+      <p id="rules"> Tiles cannot be removed from the board once it is placed </p>
+      <p id="rules"> Your total score will be updated at the end of each round </p>
+    </div>
+
+    <div class="score">
+      <h1>Score:</h1>
+      <h1 id="actual_score">0</h1>
+    </div>
+
+    <div class="total_score">
+      <h1>Total Score:</h1>
+      <h1 id="total_score">0</h1>
+    </div>
+
+    <div class="word">
+      <h1>Word: </h1>
+      <h1 id="actual_word"></h1>
+    </div>
+
+    <div class="tiles_remaining">
+      <h1>Tiles Remaining: </h1>
+      <h1 id="tiles_remaining"></h1>
+    </div>
+
+    <div class="board">
+      <div><img id="board1" class="droppable vacant" src="images/tiles/Scrabble_Tile__.jpg" value="0"></div>
+      <div><img id="board2" class="droppable vacant" src="images/tiles/board_dw.jpg" value="0"></div>
+      <div><img id="board3" class="droppable vacant" src="images/tiles/Scrabble_Tile__.jpg" value="0"></div>
+      <div><img id="board4" class="droppable vacant" src="images/tiles/Scrabble_Tile__.jpg" value="0"></div>
+      <div><img id="board5" class="droppable vacant" src="images/tiles/Scrabble_Tile__.jpg" value="0"></div>
+      <div><img id="board6" class="droppable vacant" src="images/tiles/board_dw.jpg" value="0"></div>
+      <div><img id="board7" class="droppable vacant" src="images/tiles/Scrabble_Tile__.jpg" value="0"></div>
+    </div>
+
+    <!-- rack stores an picture of a rack with 7 tiles to be genrated through js function-->
+    <div class="rack">
+      <img src="images/rack.png" id="rack_img">
+      <div><img id="tile1" class="draggable" src=""></div>
+      <div><img id="tile2" class="draggable" src=""></div>
+      <div><img id="tile3" class="draggable" src=""></div>
+      <div><img id="tile4" class="draggable" src=""></div>
+      <div><img id="tile5" class="draggable" src=""></div>
+      <div><img id="tile6" class="draggable" src=""></div>
+      <div><img id="tile7" class="draggable" src=""></div>
+    </div>
+
+    <div class="game_buttons">
+      <button type="button" id="submit_btn">Submit</button>
+      <button type="button" id="restart_btn">Restart</button>
+    </div>
+
+  <!-- end of container-->
+  </div>
+
+  <!-- jQuery CDN -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  
+  <!-- jQuery validator CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.2/dist/jquery.validate.js"></script>
+
+  <!--jQuery UI CDN -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+  
+  <!-- my javascript-->
+  <script src="js/hw8.js"></script>
+</body>
+</html>
