@@ -210,9 +210,6 @@ function activateDragDrop(){
 
         //display the concatenated word to screen
         update_word_displayer();
-
-        //keep track and show how many tiles are left
-        //ScrabbleTiles[tile_letter]["number-remaining"]--;
         
         //count and display number of tiles remaining to the webpage
         get_num_remaining();
